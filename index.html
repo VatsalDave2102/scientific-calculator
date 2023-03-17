@@ -8,14 +8,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Scientific Calculator</title>
 </head>
 <body>
     <div class="calculator container">
-        <div class="display w-100 h1 text-end">0</div>
+        <div class="display w-100 d-flex"><input type="text" placeholder="0" class="h1 text-end overflow-auto pt-3 output" value=""></div>
+        <!-- Input keys -->
         <div class="keys w-100">
              <div class="row row1 m-1">
-                <button class="col btn key">DEG</button>
+                <button class="col btn key deg">DEG</button>
                 <button class="col btn key">F-E</button>
                 <button class="col"></button>
                 <button class="col"></button>
@@ -35,9 +36,9 @@
                      <img src="/assets/trigonometry.png" alt="" style="width: 20px;"> Trigonometry 
                   </button>
                   <ul class="dropdown-menu">
-                     <li><button class="dropdown-item d-flex trigo-function btn justify-content-center">sin()</button></li>
-                     <li><button class="dropdown-item d-flex trigo-function btn justify-content-center">cos()</button></li>
-                    <li><button class="dropdown-item d-flex trigo-function btn justify-content-center">tan()</button></li>
+                     <li><button class="dropdown-item d-flex trigo-function btn justify-content-center" value="sin(" data-formula="trigo(Math.sin(">sin()</button></li>
+                     <li><button class="dropdown-item d-flex trigo-function btn justify-content-center" value="cos(" data-formula="trigo(Math.cos(">cos()</button></li>
+                    <li><button class="dropdown-item d-flex trigo-function btn justify-content-center" value="tan(" data-formula="trigo(Math.tan(">tan()</button></li>
                   </ul>
                 </div>
                  <!-- Function dropdown -->
@@ -55,58 +56,58 @@
              </div>
              <div class="row row4 m-1">
                 <button class="col btn adv-func-toggler" onclick="advFuncToggler()">2<sup>nd</sup></button>
-                <button class="col btn math-function"> &#928 </button>
-                <button class="col btn math-function">e</button>
-                <button class="col btn key">C</button>
-                <button class="col btn key"><span class="material-symbols-outlined">backspace</span></button>
+                <button class="col btn math-function" value="3.142" data-formula="Math.PI"> &#928 </button>
+                <button class="col btn key" value="2.718" data-formula="2.718">e</button>
+                <button class="col btn clear">C</button>
+                <button class="col btn backspace"><span class="material-symbols-outlined">backspace</span></button>
              </div>
              <div class="row row5 m-1">
-                <button class="col btn visible border border-0 math-function"><em>x </em><sup>2</sup></button>
-                <button class="col btn visually-hidden border border-0 math-function"><em>x </em><sup>3</sup></button>
-                <button class="col btn math-function"><sup>1</sup>/<em>x</em></button>
+                <button class="col btn adv-function visible border border-0" value="^2" data-formula="Math.pow("><em>x </em><sup>2</sup></button>
+                <button class="col btn adv-function visually-hidden border border-0" value="^3" data-formula="Math.pow("><em>x </em><sup>3</sup></button>
+                <button class="col btn math-function" value="^-1" data-formula="Math.pow("><sup>1</sup>/<em>x</em></button>
                 <button class="col btn math-function">|<em>x</em>|</button>
-                <button class="col btn math-function">exp</button>
-                <button class="col btn math-function">mod</button>
+                <button class="col btn math-function" value="^(" data-formula="Math.pow(">exp</button>
+                <button class="col btn math-function" value="%">mod</button>
              </div>
              <div class="row row6 m-1">
-                <button class="col btn visible border border-0 math-function">&#8730x</button>
-                <button class="col btn visually-hidden border border-0 math-function">&#8731x</button>
-                <button class="col btn key">(</button>
-                <button class="col btn key">)</button>
-                <button class="col btn math-function"><em>n</em>!</button>
-                <button class="col btn operator">&divide</button>
+                <button class="col btn adv-function visible border border-0" value="&#8730" data-formula="Math.sqrt(">&#8730x</button>
+                <button class="col btn adv-function visually-hidden border border-0 " value="&#8731">&#8731x</button>
+                <button class="col btn key" value="(" data-formula="(">(</button>
+                <button class="col btn key" value=")" data-formula=")">)</button>
+                <button class="col btn math-function" value="!" data-formula="factorial"><em>n</em>!</button>
+                <button class="col btn operator dis" value="&divide" data-formula="/">&divide</button>
              </div>
              <div class="row row7 m-1">
-                <button class="col btn visible border border-0 math-function"><em>x <sup>y</sup></em></button>
-                <button class="col btn visually-hidden border border-0 math-function"><sup>y</sup>&#8730x</button>
-                <button class="col btn white number">7</button>
-                <button class="col btn white number">8</button>
-                <button class="col btn white number">9</button>
-                <button class="col btn operator">&times</button>
+                <button class="col btn adv-function visible border border-0 "value="^"><em>x <sup>y</sup></em></button>
+                <button class="col btn adv-function visually-hidden border border-0 " value="y&#8730x"><sup>y</sup>&#8730x</button>
+                <button class="col btn number white " value="7" data-formula="7">7</button>
+                <button class="col btn number white " value="8" data-formula="8">8</button>
+                <button class="col btn number white "value='9' data-formula="9">9</button>
+                <button class="col btn operator dis" value="&times" data-formula="*">&times</button>
              </div>
              <div class="row row8 m-1">
-                <button class="col btn visible border border-0 math-function">10<sup><em>x</em></sup></button>
-                <button class="col btn visually-hidden border border-0 math-function">2<sup><em>x</em></sup></button>
-                <button class="col btn white number">4</button>
-                <button class="col btn white number">5</button>
-                <button class="col btn white number">6</button>
-                <button class="col btn operator">-</button>
+                <button class="col btn adv-function visible border border-0 " value="10^">10<sup><em>x</em></sup></button>
+                <button class="col btn adv-function visually-hidden border border-0 " value="2^">2<sup><em>x</em></sup></button>
+                <button class="col btn number white " value="4" data-formula="4">4</button>
+                <button class="col btn number white " value="5" data-formula="5">5</button>
+                <button class="col btn number white " value="6" data-formula="6">6</button>
+                <button class="col btn operator dis" value="-" data-formula="-">-</button>
              </div>
              <div class="row row9 m-1">
-                <button class="col btn visible border border-0 math-function">log</button>
-                <button class="col btn visually-hidden border border-0 math-function">log<sub>y</sub>x</button>
-                <button class="col btn white number">1</button>
-                <button class="col btn white number">2</button>
-                <button class="col btn white number">3</button>
-                <button class="col btn operator">+</button>
+                <button class="col btn adv-function visible border border-0 " value="log(" data-formula="Math.log(">log</button>
+                <button class="col btn adv-function visually-hidden border border-0 " value="log(">log<sub>y</sub>x</button>
+                <button class="col btn number white " value="1" data-formula="1">1</button>
+                <button class="col btn number white " value="2" data-formula="2">2</button>
+                <button class="col btn number white " value="3" data-formula="3">3</button>
+                <button class="col btn operator dis" value="+" data-formula="+">+</button>
              </div>
              <div class="row row10 m-1">
-                <button class="col btn visible border border-0 math-function">ln</button>
-                <button class="col btn visually-hidden border border-0 math-function">e<sup>x</sup></button>
-                <button class="col btn white"><sup>+</sup>/<sub>-</sub></button>
-                <button class="col btn white number">0</button>
-                <button class="col btn white key">.</button>
-                <button class="col btn blue calculate">=</button>
+                <button class="col btn adv-function visible border border-0 " value="ln(">ln</button>
+                <button class="col btn adv-function visually-hidden border border-0 " value="e^">e<sup>x</sup></button>
+                <button class="col btn key white"><sup>+</sup>/<sub>-</sub></button>
+                <button class="col btn number white " value="0" data-formula="0">0</button>
+                <button class="col btn key white dis" value="." data-formula=".">.</button>
+                <button class="col btn calculate blue ">=</button>
              </div>
         </div>
     </div>
